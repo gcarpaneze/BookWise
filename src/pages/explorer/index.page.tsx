@@ -100,7 +100,7 @@ export default function Explorer({ categories, books }: HomeProps) {
 
   return (
     <HomeContainer>
-      <Navbar />
+      <Navbar page="explorer" />
       <div>
         <header>
           <TitleHeader description="Explorar">

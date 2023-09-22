@@ -7,6 +7,10 @@ export const globalStyles = globalCss({
     boxSizing: 'border-box',
   },
 
+  html: {
+    fontFamily: 'Nunito',
+  },
+
   body: {
     '-webkit-font-smoothing': 'antialiased',
     backgroundColor: '$gray800',
@@ -14,7 +18,6 @@ export const globalStyles = globalCss({
   },
 
   'body, input, textarea, button': {
-    fontFamily: 'Nunito',
     fontWeight: 400,
 
     ':focus': {

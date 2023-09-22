@@ -33,7 +33,7 @@ export default async function handler(
             select: {
               id: true,
               name: true,
-              avatar_url: true,
+              image: true,
             },
           },
         },
@@ -70,7 +70,7 @@ export default async function handler(
           user: {
             id: review.user_id,
             name: review.user.name,
-            avatarUrl: review.user.avatar_url,
+            avatarUrl: review.user.image,
           },
         }
       }),

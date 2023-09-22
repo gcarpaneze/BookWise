@@ -39,7 +39,7 @@ export const InputFind = styled('form', {
     },
 
     '&:focus': {
-      boxShadow: '0 0 0 1px $colors$green200',
+      border: '1px solid $green200',
     },
   },
 

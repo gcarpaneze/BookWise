@@ -12,6 +12,18 @@ import converImage from '../../assets/cover-app.svg'
 export default function Register() {
   const router = useRouter()
 
+  async function handleSignIn(provider?: string) {
+    if (!provider) {
+      router.push('/home')
+      return
+    }
+
+    await signIn(provider, {
+      callbackUrl: 'http://localhost:3000/home',
+      redirect: true,
+    })
+  }
+
   return (
     <RegisterContainer>
       <Image src={converImage} alt="Book Wise" />
@@ -25,12 +37,12 @@ export default function Register() {
           <span>Entrar com Google</span>
         </Button>
 
-        <Button onClick={async () => await signIn('github')}>
+        <Button onClick={async () => await handleSignIn('github')}>
           <Image src={GithubIcon} alt="" />
           <span>Entrar com Github</span>
         </Button>
 
-        <Button onClick={() => router.push('/home')}>
+        <Button onClick={() => handleSignIn()}>
           <Image src={VisitorIcon} alt="" />
           <span>Entrar como visitante</span>
         </Button>

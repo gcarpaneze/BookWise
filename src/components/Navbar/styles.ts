@@ -30,6 +30,16 @@ export const ButtonOptionMenu = styled('button', {
   gap: '0.75rem',
   cursor: 'pointer',
   marginBottom: '$4',
+  color: '$gray400',
+
+  variants: {
+    selectedItem: {
+      true: {
+        color: '$gray100',
+        fontWeight: '$bold',
+      },
+    },
+  },
 
   svg: {
     width: '1.5rem',
@@ -38,7 +48,6 @@ export const ButtonOptionMenu = styled('button', {
   },
 
   span: {
-    color: '$gray400',
     fontSize: '$md',
     lineHeight: '$base',
   },
@@ -54,6 +63,48 @@ export const ButtonOptionMenu = styled('button', {
   },
 })
 
+export const MarkItem = styled('span', {
+  borderRadius: '$full',
+  width: 4,
+  height: '100%',
+
+  variants: {
+    selectedItem: {
+      true: {
+        color: '$green200',
+        backgroundColor: '$green200',
+      },
+    },
+  },
+})
+
+export const AreaUserAcess = styled('div', {
+  position: 'absolute',
+  bottom: '1.5rem',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginLeft: '2.94rem',
+  marginRight: '2.94rem',
+  gap: '0.75rem',
+
+  img: {
+    borderRadius: '$full',
+    marginBottom: 0,
+    marginTop: 0,
+    marginRight: '$4',
+    border: 'solid 1px $gradient-vertical',
+    objectFit: 'cover',
+  },
+
+  h3: {
+    color: '$gray100',
+    fontSize: '$md',
+    fontWeight: '$regular',
+    lineHeight: '$base',
+  },
+})
+
 export const ButtonLogin = styled('button', {
   all: 'unset',
 
@@ -64,9 +115,6 @@ export const ButtonLogin = styled('button', {
 
   cursor: 'pointer',
 
-  position: 'absolute',
-  bottom: '1.5rem',
-
   span: {
     fontWeight: '$bold',
     fontSize: '$md',
@@ -75,7 +123,6 @@ export const ButtonLogin = styled('button', {
   },
 
   svg: {
-    color: '$green100',
     width: '1.25rem',
     height: '1.25rem',
   },

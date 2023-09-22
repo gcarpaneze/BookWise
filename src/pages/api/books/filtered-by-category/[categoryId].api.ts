@@ -25,7 +25,8 @@ export default async function handler(
               select: {
                 id: true,
                 name: true,
-                avatar_url: true,
+                email: true,
+                image: true,
               },
             },
           },
@@ -61,7 +62,8 @@ export default async function handler(
             user: {
               id: review.user_id,
               name: review.user.name,
-              avatarUrl: review.user.avatar_url,
+              email: review.user.email,
+              avatarUrl: review.user.image,
             },
           }
         }),
@@ -83,7 +85,8 @@ export default async function handler(
                   select: {
                     id: true,
                     name: true,
-                    avatar_url: true,
+                    email: true,
+                    image: true,
                   },
                 },
               },
@@ -119,7 +122,8 @@ export default async function handler(
             user: {
               id: review.user_id,
               name: review.user.name,
-              avatarUrl: review.user.avatar_url,
+              email: review.user.email,
+              avatarUrl: review.user.image,
             },
           }
         }),

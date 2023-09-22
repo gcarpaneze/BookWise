@@ -1,20 +1,12 @@
 import Image from 'next/image'
 import React from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
-import { BookOpen, BookmarkSimple, X } from '@phosphor-icons/react'
 
 import Rating from '../Rating'
-import CardReview from '../CardReview'
 
-import {
-  CardContent,
-  DialogContent,
-  DialogOverlay,
-  HeaderDialog,
-  BookInformation,
-  BookMoreInformation,
-  Reviews,
-} from './styles'
+import { CardContentTrigger } from './styles'
+
+import { DetailsBookDialog } from './DetailsBookDialog'
 
 export interface BookMiniCardProps {
   id: string
@@ -47,7 +39,7 @@ interface MiniCardProps {
 export default function MiniCardBook({ data }: MiniCardProps) {
   return (
     <Dialog.Root>
-      <CardContent>
+      <CardContentTrigger>
         <Image
           src={data?.cover_url}
           alt={data?.name}
@@ -58,85 +50,18 @@ export default function MiniCardBook({ data }: MiniCardProps) {
         />
 
         <div>
-          <p>
+          <div>
             <h3>{data.name}</h3>
             <h4>{data.author}</h4>
-          </p>
+          </div>
 
           <p>
             <Rating rate={data.averageRating} />
           </p>
         </div>
-      </CardContent>
+      </CardContentTrigger>
 
-      <Dialog.Portal>
-        <DialogOverlay />
-        <DialogContent>
-          <HeaderDialog>
-            <Dialog.Close>
-              <X />
-            </Dialog.Close>
-          </HeaderDialog>
-
-          <section>
-            <BookInformation>
-              <Image
-                src={data?.cover_url}
-                alt={data?.name}
-                width={171}
-                height={242}
-                quality={100}
-                style={{ objectFit: 'cover' }}
-              />
-
-              <div>
-                <p>
-                  <h3>{data.name}</h3>
-                  <h4>{data.author}</h4>
-                </p>
-
-                <p>
-                  <Rating rate={data.averageRating} />
-                  <span>3 avaliações</span>
-                </p>
-              </div>
-            </BookInformation>
-
-            <BookMoreInformation>
-              <div>
-                <BookmarkSimple />
-                <div>
-                  <span>Categoria</span>
-                  {data?.categories
-                    .map((category) => {
-                      return category.name
-                    })
-                    .toString()}
-                </div>
-              </div>
-
-              <div>
-                <BookOpen />
-                <div>
-                  <span>Páginas</span>
-                  <strong>{data.totalPages}</strong>
-                </div>
-              </div>
-            </BookMoreInformation>
-
-            <header>
-              <span>Avaliações</span>
-              <button>Avaliar</button>
-            </header>
-
-            <Reviews>
-              {data?.ratings?.map((review) => {
-                return <CardReview key={review.id} data={review} />
-              })}
-            </Reviews>
-          </section>
-        </DialogContent>
-      </Dialog.Portal>
+      <DetailsBookDialog data={data} />
     </Dialog.Root>
   )
 }

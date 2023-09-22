@@ -11,7 +11,7 @@ import {
   SectionBooks,
   SectionPopularBooks,
 } from './styles'
-import { GetStaticProps } from 'next'
+import { GetServerSideProps } from 'next'
 import { api } from '../../lib/axios'
 import { useRouter } from 'next/router'
 
@@ -25,7 +25,7 @@ export default function Home({ lastReviews, bestReviews }: HomeProps) {
 
   return (
     <HomeContainer>
-      <Navbar />
+      <Navbar page="home" />
       <div>
         <TitleHeader description="Início">
           <ChartLineUp />
@@ -62,7 +62,7 @@ export default function Home({ lastReviews, bestReviews }: HomeProps) {
   )
 }
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const res = await api.get('/books/best-book-reviews')
 
   const { lastReviews, bestReviews } = res.data
