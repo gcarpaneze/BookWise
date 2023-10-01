@@ -1,6 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import Image from 'next/image'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import { X } from '@phosphor-icons/react'
 
 import {
@@ -34,7 +34,7 @@ export function LoginDialogPortal() {
         <DialogDescription>
           <h3>Faça login para deixar sua avaliação</h3>
 
-          <Button>
+          <Button onClick={async () => await handleSignIn('google')}>
             <Image src={GoogleIcon} alt="" />
             <span>Entrar com Google</span>
           </Button>

@@ -15,7 +15,7 @@ export interface BookCardProps {
   user: {
     id: string
     name: string
-    avatar_url: string
+    image: string
   }
   book: {
     id: string
@@ -38,12 +38,7 @@ export default function CardBook({ data }: CardProps) {
   return (
     <CardContainer>
       <CardHeader>
-        <Image
-          src={data?.user?.avatar_url}
-          alt="Avatar"
-          width={40}
-          height={40}
-        />
+        <Image src={data?.user?.image} alt="Avatar" width={40} height={40} />
 
         <div>
           <h3>{data?.user?.name}</h3>

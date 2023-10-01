@@ -5,16 +5,8 @@ export const RatingContainer = styled('span', {
   gap: '0.25rem',
 })
 
-export const ButtonStar = styled('button', {
+export const ButtonStar = styled('label', {
   all: 'unset',
-
-  variants: {
-    editable: {
-      true: {
-        cursor: 'pointer',
-      },
-    },
-  },
 
   svg: {
     color: '$purple100',

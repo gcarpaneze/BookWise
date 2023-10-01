@@ -14,7 +14,7 @@ import {
 } from './styles'
 import Rating from '../../Rating'
 import { LoginDialogPortal } from '../../LoginDialog'
-import CardReview from '../../CardReview'
+import CardReview, { ReviewCardProps } from '../../CardReview'
 
 import { BookMiniCardProps } from '../index'
 import { FormReview } from '../../FormReview'
@@ -26,6 +26,7 @@ interface MiniCardProps {
 export function DetailsBookDialog({ data }: MiniCardProps) {
   const [open, setOpen] = useState(false)
   const [availableMode, setAvailableMode] = useState(false)
+  const [newReview, setNewReview] = useState<ReviewCardProps>()
 
   const { data: session, status } = useSession()
 
@@ -41,6 +42,10 @@ export function DetailsBookDialog({ data }: MiniCardProps) {
     }
 
     setAvailableMode(true)
+  }
+
+  function addNewReview(review: ReviewCardProps) {
+    setNewReview(review)
   }
 
   return (
@@ -114,10 +119,14 @@ export function DetailsBookDialog({ data }: MiniCardProps) {
               <FormReview
                 session={session?.user}
                 closeAvailableMode={() => setAvailableMode(false)}
+                bookId={data.id}
+                addNewReview={(review) => addNewReview(review)}
               />
             )}
 
-            {data?.ratings?.map((review) => {
+            {newReview && <CardReview key={newReview.id} data={newReview} />}
+
+            {data.ratings.map((review) => {
               return <CardReview key={review.id} data={review} />
             })}
           </Reviews>

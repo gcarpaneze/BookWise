@@ -92,7 +92,10 @@ export function Navbar({ page }: NavBarProps) {
 
           <ButtonLogin
             onClick={() =>
-              signOut({ callbackUrl: 'http://localhost:3000/register' })
+              signOut({
+                callbackUrl: `http://localhost:3000/register`,
+                redirect: false,
+              })
             }
           >
             <SignOut color="#F75A68" />

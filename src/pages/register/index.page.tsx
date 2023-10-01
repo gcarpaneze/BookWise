@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation'
-import { signIn } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { Button, RegisterContainer } from './styles'
 
@@ -8,9 +8,11 @@ import GoogleIcon from '../../assets/logos_google-icon.svg'
 import VisitorIcon from '../../assets/logos_visitor-icon.svg'
 
 import converImage from '../../assets/cover-app.svg'
+import { toast } from 'react-toastify'
 
 export default function Register() {
   const router = useRouter()
+  const { status } = useSession()
 
   async function handleSignIn(provider?: string) {
     if (!provider) {
@@ -18,8 +20,14 @@ export default function Register() {
       return
     }
 
+    if (status === 'authenticated') {
+      toast.warning('Usuário já autenticado')
+      router.push('/home')
+      return
+    }
+
     await signIn(provider, {
-      callbackUrl: 'http://localhost:3000/home',
+      callbackUrl: `http://localhost:3000/home`,
       redirect: true,
     })
   }
@@ -32,7 +40,7 @@ export default function Register() {
         <h1>Boas Vindas</h1>
         <h3>Faça seu login ou acesse como visitante</h3>
 
-        <Button>
+        <Button onClick={async () => await handleSignIn('google')}>
           <Image src={GoogleIcon} alt="" />
           <span>Entrar com Google</span>
         </Button>

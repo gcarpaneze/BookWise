@@ -45,11 +45,16 @@ export const FormContainer = styled('form', {
 
 export const FormHeader = styled('header', {
   display: 'flex',
+  alignItems: 'center',
   width: '100%',
   position: 'relative',
 
-  div: {
-    border: '1px solid $gradient-vertical',
+  '> div': {
+    display: 'flex',
+    gap: '0.01rem',
+    position: 'absolute',
+    top: 0,
+    right: 0,
   },
 
   img: {
@@ -109,5 +114,16 @@ export const Button = styled('button', {
   svg: {
     width: '1.5rem',
     height: '1.5rem',
+  },
+})
+
+export const ButtonStar = styled('label', {
+  all: 'unset',
+  cursor: 'pointer',
+
+  svg: {
+    color: '$purple100',
+    width: '1rem',
+    height: '1rem',
   },
 })
