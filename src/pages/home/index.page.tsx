@@ -14,6 +14,7 @@ import {
 import { GetServerSideProps } from 'next'
 import { api } from '../../lib/axios'
 import { useRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 
 interface HomeProps {
   lastReviews: BookCardProps[]
@@ -24,41 +25,45 @@ export default function Home({ lastReviews, bestReviews }: HomeProps) {
   const router = useRouter()
 
   return (
-    <HomeContainer>
-      <Navbar page="home" />
-      <div>
-        <TitleHeader description="Início">
-          <ChartLineUp />
-        </TitleHeader>
+    <>
+      <NextSeo title="Book Wise | Home" />
 
-        <HomeContent>
-          <SectionBooks>
-            <h3>Avaliações mais recentes</h3>
+      <HomeContainer>
+        <Navbar page="home" />
+        <div>
+          <TitleHeader description="Início">
+            <ChartLineUp />
+          </TitleHeader>
 
-            {lastReviews.map((lastReview) => {
-              return <CardBook key={lastReview.id} data={lastReview} />
-            })}
-          </SectionBooks>
+          <HomeContent>
+            <SectionBooks>
+              <h3>Avaliações mais recentes</h3>
 
-          <SectionPopularBooks>
-            <header>
-              <h3>Livros populares</h3>
-
-              <button onClick={() => router.push('/explorer')}>
-                Ver todos
-                <CaretRight />
-              </button>
-            </header>
-
-            <div>
-              {bestReviews.map((book) => {
-                return <MiniCardBook key={book.id} data={book} />
+              {lastReviews.map((lastReview) => {
+                return <CardBook key={lastReview.id} data={lastReview} />
               })}
-            </div>
-          </SectionPopularBooks>
-        </HomeContent>
-      </div>
-    </HomeContainer>
+            </SectionBooks>
+
+            <SectionPopularBooks>
+              <header>
+                <h3>Livros populares</h3>
+
+                <button onClick={() => router.push('/explorer')}>
+                  Ver todos
+                  <CaretRight />
+                </button>
+              </header>
+
+              <div>
+                {bestReviews.map((book) => {
+                  return <MiniCardBook key={book.id} data={book} />
+                })}
+              </div>
+            </SectionPopularBooks>
+          </HomeContent>
+        </div>
+      </HomeContainer>
+    </>
   )
 }
 

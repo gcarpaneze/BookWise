@@ -18,6 +18,7 @@ import {
   HomeContent,
   InputFind,
 } from './styles'
+import { NextSeo } from 'next-seo'
 
 const schema = z.object({
   search: z.string().min(3),
@@ -99,46 +100,50 @@ export default function Explorer({ categories, books }: HomeProps) {
   )
 
   return (
-    <HomeContainer>
-      <Navbar page="explorer" />
-      <div>
-        <header>
-          <TitleHeader description="Explorar">
-            <Binoculars />
-          </TitleHeader>
+    <>
+      <NextSeo title="Book Wise | Explore nossos livros" />
 
-          <InputFind onSubmit={handleSubmit(handleSearchByAuthorOrName)}>
-            <input
-              placeholder="Buscar livro ou autor"
-              {...register('search')}
-            />
-            <button title="search" type="submit">
-              <MagnifyingGlass />
-            </button>
-          </InputFind>
-        </header>
+      <HomeContainer>
+        <Navbar page="explorer" />
+        <div>
+          <header>
+            <TitleHeader description="Explorar">
+              <Binoculars />
+            </TitleHeader>
 
-        <FiltersTagsContainer>
-          {btnCategories.map((categorie) => {
-            return (
-              <FilterTagButton
-                key={categorie.id}
-                selected={categorie.active}
-                onClick={() => handleFilterByCategory(categorie.id)}
-              >
-                {categorie.name}
-              </FilterTagButton>
-            )
-          })}
-        </FiltersTagsContainer>
+            <InputFind onSubmit={handleSubmit(handleSearchByAuthorOrName)}>
+              <input
+                placeholder="Buscar livro ou autor"
+                {...register('search')}
+              />
+              <button title="search" type="submit">
+                <MagnifyingGlass />
+              </button>
+            </InputFind>
+          </header>
 
-        <HomeContent>
-          {cardBooks.map((book) => {
-            return <MiniCardBook data={book} key={book.id} />
-          })}
-        </HomeContent>
-      </div>
-    </HomeContainer>
+          <FiltersTagsContainer>
+            {btnCategories.map((categorie) => {
+              return (
+                <FilterTagButton
+                  key={categorie.id}
+                  selected={categorie.active}
+                  onClick={() => handleFilterByCategory(categorie.id)}
+                >
+                  {categorie.name}
+                </FilterTagButton>
+              )
+            })}
+          </FiltersTagsContainer>
+
+          <HomeContent>
+            {cardBooks.map((book) => {
+              return <MiniCardBook data={book} key={book.id} />
+            })}
+          </HomeContent>
+        </div>
+      </HomeContainer>
+    </>
   )
 }
 

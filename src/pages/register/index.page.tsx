@@ -9,6 +9,7 @@ import VisitorIcon from '../../assets/logos_visitor-icon.svg'
 
 import converImage from '../../assets/cover-app.svg'
 import { toast } from 'react-toastify'
+import { NextSeo } from 'next-seo'
 
 export default function Register() {
   const router = useRouter()
@@ -33,28 +34,32 @@ export default function Register() {
   }
 
   return (
-    <RegisterContainer>
-      <Image src={converImage} alt="Book Wise" />
+    <>
+      <NextSeo title="Book Wise | Registre-se" />
 
-      <div>
-        <h1>Boas Vindas</h1>
-        <h3>Faça seu login ou acesse como visitante</h3>
+      <RegisterContainer>
+        <Image src={converImage} alt="Book Wise" />
 
-        <Button onClick={async () => await handleSignIn('google')}>
-          <Image src={GoogleIcon} alt="" />
-          <span>Entrar com Google</span>
-        </Button>
+        <div>
+          <h1>Boas Vindas</h1>
+          <h3>Faça seu login ou acesse como visitante</h3>
 
-        <Button onClick={async () => await handleSignIn('github')}>
-          <Image src={GithubIcon} alt="" />
-          <span>Entrar com Github</span>
-        </Button>
+          <Button onClick={async () => await handleSignIn('google')}>
+            <Image src={GoogleIcon} alt="" />
+            <span>Entrar com Google</span>
+          </Button>
 
-        <Button onClick={() => handleSignIn()}>
-          <Image src={VisitorIcon} alt="" />
-          <span>Entrar como visitante</span>
-        </Button>
-      </div>
-    </RegisterContainer>
+          <Button onClick={async () => await handleSignIn('github')}>
+            <Image src={GithubIcon} alt="" />
+            <span>Entrar com Github</span>
+          </Button>
+
+          <Button onClick={() => handleSignIn()}>
+            <Image src={VisitorIcon} alt="" />
+            <span>Entrar como visitante</span>
+          </Button>
+        </div>
+      </RegisterContainer>
+    </>
   )
 }
